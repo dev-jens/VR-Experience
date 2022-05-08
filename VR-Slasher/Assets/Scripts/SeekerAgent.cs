@@ -7,18 +7,47 @@ public class SeekerAgent : Agent
 {
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float rotationSpeed = 350;
+    [SerializeField] private MonitorTool monitorTool;
 
     private Rigidbody rb;
     private Environment env;
+
+    private float maxTime = 60f;
+    private float timer = 0f;
 
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
         env = GetComponentInParent<Environment>();
+
+        timer = maxTime;
+    }
+
+    private void Update()
+    {
+        // If player falls, give negative reward and end episode
+        if(transform.position.y < 0)
+        {
+            SetReward(-10f);
+            monitorTool.FailsCount += 1;
+            EndEpisode();
+        }
+
+        // Create timer to give the agent a maximum time to find the player
+        if(timer <= 0f)
+        {
+            SetReward(-100f);
+            monitorTool.FailsCount += 1;
+            EndEpisode();
+            timer = maxTime; // Reset timer
+        }
+        timer -= Time.deltaTime; // Take time elapsed from timer
     }
 
     public override void OnEpisodeBegin()
     {
+        monitorTool.EpisodesCount += 1;
+
         rb.angularVelocity = Vector3.zero;
         rb.velocity = Vector3.zero;
 
@@ -62,9 +91,14 @@ public class SeekerAgent : Agent
         // Stop Episode when Agent finds player - SET REWARD TO 10
         if (collision.transform.CompareTag("Player"))
         {
-            SetReward(1f);
+            SetReward(10f);
+            monitorTool.SuccesCount += 1;
             EndEpisode();
         }
+
+        // Add negative reward when Agent collides with a collidable object
+        if (collision.transform.CompareTag("Collidable"))
+            AddReward(-0.1f);
     }
 
     public override void Heuristic(in ActionBuffers actionBuffers)
@@ -83,5 +117,7 @@ public class SeekerAgent : Agent
             outputAction[1] = 1;
         else if (Input.GetKey(KeyCode.RightArrow)) // Turning right
             outputAction[1] = 2;
+
+        print(outputAction[0]);
     }
 }
