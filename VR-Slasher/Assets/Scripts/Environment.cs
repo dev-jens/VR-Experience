@@ -12,30 +12,29 @@ public class Environment : MonoBehaviour
 
     public void ResetEnvironment()
     {
-        agent.transform.localPosition = RandomPositionPlayer();
-        agent.transform.localEulerAngles = RandomRotationPlayer();
+        // Reset agent position
+        do
+        {
+            agent.transform.localPosition = RandomPosition(.5f);
+            agent.transform.localEulerAngles = RandomRotation();
+        } while (Physics.CheckSphere(agent.transform.position, .1f));
 
-        float y = player.transform.position.y;
-        player.transform.localPosition = RandomPosition(y);
+        // Reset player (Agent's target) position
+        do
+        {
+            player.transform.localPosition = RandomPosition(.5f);
+        } while (Physics.CheckSphere(player.transform.position, .1f));
     }
 
     public Vector3 RandomPosition(float y)
     {
-        float x = Random.Range(-6.5f, 6.5f);
-        float z = Random.Range(-6.5f, 6.5f);
+        float x = Random.Range(-14.25f, 14.25f);
+        float z = Random.Range(-14.25f, 14.25f);
 
         return new Vector3(x, y, z);
     }
 
-    private Vector3 RandomPositionPlayer()
-    {
-        float x = Random.Range(-6.75f, 6.75f);
-        float z = Random.Range(-6.75f, -1.25f);
-
-        return new Vector3(x, 0.5f, z);
-    }
-
-    private Vector3 RandomRotationPlayer()
+    private Vector3 RandomRotation()
     {
         float y = Random.Range(0.0f, 360.0f);
 
