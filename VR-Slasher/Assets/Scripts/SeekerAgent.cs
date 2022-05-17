@@ -113,7 +113,5 @@ public class SeekerAgent : Agent
             outputAction[1] = 1;
         else if (Input.GetKey(KeyCode.RightArrow)) // Turning right
             outputAction[1] = 2;
-
-        print(outputAction[0]);
     }
 }

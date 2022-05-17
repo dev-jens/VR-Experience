@@ -6,16 +6,16 @@ public class Environment : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform agent;
 
-    private List<Transform> players;
-
-    private void OnEnable()
-    {
-        ResetEnvironment();
-    }
+    private List<Transform> players = new List<Transform>();
 
     public void ResetEnvironment()
     {
         // Remove all players still in the field
+        foreach(var player in players)
+        {
+            Destroy(player.gameObject);
+        }
+        players.Clear();
 
         // Reset agent position
         do
