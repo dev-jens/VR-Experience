@@ -12,7 +12,7 @@ public class SeekerAgent : Agent
     private Rigidbody rb;
     private Environment env;
 
-    private float maxTime = 60f;
+    [SerializeField] private float maxTime = 60f;
     private float timer = 0f;
 
     public override void Initialize()
@@ -25,10 +25,10 @@ public class SeekerAgent : Agent
 
     private void Update()
     {
-        // If player falls, give negative reward and end episode
-        if(transform.position.y < 0)
+        // If agent falls, give negative reward and end episode
+        if(transform.position.y < transform.parent.position.y - 3)
         {
-            SetReward(-10f);
+            SetReward(-1f);
             monitorTool.FailsCount += 1;
             EndEpisode();
         }
@@ -36,7 +36,7 @@ public class SeekerAgent : Agent
         // Create timer to give the agent a maximum time to find the player
         if(timer <= 0f)
         {
-            SetReward(-100f);
+            SetReward(-1f);
             monitorTool.FailsCount += 1;
             EndEpisode();
             timer = maxTime; // Reset timer
@@ -91,14 +91,10 @@ public class SeekerAgent : Agent
         // Stop Episode when Agent finds player - SET REWARD TO 10
         if (collision.transform.CompareTag("Player"))
         {
-            SetReward(10f);
+            SetReward(1f);
             monitorTool.SuccesCount += 1;
             EndEpisode();
         }
-
-        // Add negative reward when Agent collides with a collidable object
-        if (collision.transform.CompareTag("Collidable"))
-            AddReward(-0.1f);
     }
 
     public override void Heuristic(in ActionBuffers actionBuffers)
@@ -113,7 +109,7 @@ public class SeekerAgent : Agent
             outputAction[0] = 2;
         else if (Input.GetKey(KeyCode.DownArrow)) // Moving backwards
             outputAction[0] = 1;
-        else if (Input.GetKey(KeyCode.LeftArrow)) // Turning left
+        if (Input.GetKey(KeyCode.LeftArrow)) // Turning left
             outputAction[1] = 1;
         else if (Input.GetKey(KeyCode.RightArrow)) // Turning right
             outputAction[1] = 2;

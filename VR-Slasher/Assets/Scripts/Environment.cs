@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Environment : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform agent;
+
+    private List<Transform> players;
 
     private void OnEnable()
     {
@@ -12,18 +15,39 @@ public class Environment : MonoBehaviour
 
     public void ResetEnvironment()
     {
-        agent.transform.localPosition = new Vector3(0f, 0.5f, -4f);
-        agent.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        // Remove all players still in the field
 
-        float y = player.transform.position.y;
-        player.transform.position = RamdomPosition(y);
+        // Reset agent position
+        do
+        {
+            agent.transform.localPosition = RandomPosition(.5f);
+            agent.transform.localEulerAngles = RandomRotation();
+        } while (Physics.CheckSphere(agent.transform.position, .1f));
+
+        // Reset player (Agent's target) position
+        for (int i = 0; i < 4; i++)
+        {
+            Transform player = Instantiate(playerPrefab, transform.parent).transform;
+            players.Add(player);
+            do
+            {
+                player.transform.position = RandomPosition(0.5f);
+            } while (Physics.CheckSphere(player.transform.position, .1f));
+        }
     }
 
-    public Vector3 RamdomPosition(float y)
+    public Vector3 RandomPosition(float y)
     {
-        float x = Random.Range(-6.5f, 6.5f);
-        float z = Random.Range(-6.5f, 6.5f);
+        float x = Random.Range(-9.25f, 9.25f);
+        float z = Random.Range(-9.25f, 9.25f);
 
         return new Vector3(x, y, z);
+    }
+
+    private Vector3 RandomRotation()
+    {
+        float y = Random.Range(0.0f, 360.0f);
+
+        return new Vector3(0f, y, 0f);
     }
 }
