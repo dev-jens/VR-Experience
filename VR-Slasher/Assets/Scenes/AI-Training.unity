@@ -130,6 +130,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 861478426, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271292027, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: Record
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271292027, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257686162379058870, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 8341250474268929237, guid: 6ce8f338a7d34074f8fefd1be4a82e4e, type: 3}
+    - target: {fileID: 257686162379058870, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1271292020}
+    - target: {fileID: 257686162379058870, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 8341250474268929234, guid: 6ce8f338a7d34074f8fefd1be4a82e4e, type: 3}
     - target: {fileID: 257686162379058872, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
       propertyPath: m_Name
       value: TrainingArea
@@ -179,13 +203,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 257686162471693475, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
-      propertyPath: maxTime
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 257686162471693475, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
       propertyPath: monitorTool
       value: 
       objectReference: {fileID: 1760197772}
+    - target: {fileID: 257686162471693480, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
 --- !u!1 &1026753312
@@ -350,6 +374,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199170551}
   m_CullTransparentMesh: 1
+--- !u!1 &1271292020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 257686162471693482, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+  m_PrefabInstance: {fileID: 460545219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543753582
 GameObject:
   m_ObjectHideFlags: 0

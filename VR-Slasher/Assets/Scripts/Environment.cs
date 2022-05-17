@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Environment : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform agent;
+
+    private List<Transform> players;
 
     private void OnEnable()
     {
@@ -12,6 +15,8 @@ public class Environment : MonoBehaviour
 
     public void ResetEnvironment()
     {
+        // Remove all players still in the field
+
         // Reset agent position
         do
         {
@@ -20,10 +25,15 @@ public class Environment : MonoBehaviour
         } while (Physics.CheckSphere(agent.transform.position, .1f));
 
         // Reset player (Agent's target) position
-        do
+        for (int i = 0; i < 4; i++)
         {
-            player.transform.localPosition = RandomPosition(.5f);
-        } while (Physics.CheckSphere(player.transform.position, .1f));
+            Transform player = Instantiate(playerPrefab, transform.parent).transform;
+            players.Add(player);
+            do
+            {
+                player.transform.position = RandomPosition(0.5f);
+            } while (Physics.CheckSphere(player.transform.position, .1f));
+        }
     }
 
     public Vector3 RandomPosition(float y)

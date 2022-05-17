@@ -109,7 +109,7 @@ public class SeekerAgent : Agent
             outputAction[0] = 2;
         else if (Input.GetKey(KeyCode.DownArrow)) // Moving backwards
             outputAction[0] = 1;
-        else if (Input.GetKey(KeyCode.LeftArrow)) // Turning left
+        if (Input.GetKey(KeyCode.LeftArrow)) // Turning left
             outputAction[1] = 1;
         else if (Input.GetKey(KeyCode.RightArrow)) // Turning right
             outputAction[1] = 2;
