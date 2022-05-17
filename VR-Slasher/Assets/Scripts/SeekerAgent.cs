@@ -15,8 +15,6 @@ public class SeekerAgent : Agent
     [SerializeField] private float maxTime = 60f;
     private float timer = 0f;
 
-    private bool onWall = false;
-
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,21 +26,17 @@ public class SeekerAgent : Agent
     private void Update()
     {
         // If agent falls, give negative reward and end episode
-        if(transform.position.y < 0)
+        if(transform.position.y < transform.parent.position.y - 3)
         {
-            SetReward(-10f);
+            SetReward(-1f);
             monitorTool.FailsCount += 1;
             EndEpisode();
         }
 
-        // If agent huggs a wall, give him continuos negative reward
-        if (onWall)
-            AddReward(-.1f);
-
         // Create timer to give the agent a maximum time to find the player
         if(timer <= 0f)
         {
-            SetReward(-100f);
+            SetReward(-1f);
             monitorTool.FailsCount += 1;
             EndEpisode();
             timer = maxTime; // Reset timer
@@ -97,21 +91,10 @@ public class SeekerAgent : Agent
         // Stop Episode when Agent finds player - SET REWARD TO 10
         if (collision.transform.CompareTag("Player"))
         {
-            SetReward(100f);
+            SetReward(1f);
             monitorTool.SuccesCount += 1;
             EndEpisode();
         }
-
-        // Check if player starts hugging a wall
-        if (collision.transform.CompareTag("Collidable"))
-            onWall = true;
-    }
-
-    void OnCollisionExit(Collision collision)
-    {
-        // Check if agent stops hugging a wall
-        if (collision.transform.CompareTag("Collidable"))
-            onWall = false;
     }
 
     public override void Heuristic(in ActionBuffers actionBuffers)
