@@ -28,9 +28,9 @@ behaviors:
       # gail:
       #   strength: 0.5
       #   demo_path: ImitationModels/SeekerAgentImati.demo
-    behavioral_cloning:
-      strength: 0.5
-      demo_path: D:\Unity projects\VR-Experience\VR-Slasher\ImitationModels\SeekerAgentImati.demo
+    # behavioral_cloning:
+    #   strength: 0.5
+    #   demo_path: D:\Unity projects\VR-Experience\VR-Slasher\ImitationModels\SeekerAgentImati.demo
     max_steps: 2000000
     time_horizon: 64
     summary_freq: 2000
