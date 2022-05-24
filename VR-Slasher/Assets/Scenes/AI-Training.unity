@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &232351023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1287670545339666805, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+  m_PrefabInstance: {fileID: 460545219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &460545219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 257686162379058870, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: ground
+      value: 
+      objectReference: {fileID: 232351023}
     - target: {fileID: 257686162379058872, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
       propertyPath: m_Name
       value: TrainingArea
