@@ -21,13 +21,6 @@ public class Environment : MonoBehaviour
         }
         players.Clear();
 
-        // Reset agent position
-        do
-        {
-            agent.transform.localPosition = RandomPosition(agent.transform.localPosition.y);
-            agent.transform.localEulerAngles = RandomRotation();
-        } while (Physics.CheckSphere(agent.transform.localPosition, .1f));
-
         // Reset player (Agent's target) position
         for (int i = 0; i < targets; i++)
         {
@@ -39,6 +32,16 @@ public class Environment : MonoBehaviour
                 player.transform.localPosition = RandomPosition(player.transform.localPosition.y);
             } while (Physics.CheckSphere(player.transform.localPosition, .1f));
         }
+
+        // Reset agent position
+        do
+        {
+            agent.transform.localPosition = RandomPosition(agent.transform.localPosition.y);
+            agent.transform.localEulerAngles = RandomRotation();
+        } while (Physics.CheckSphere(agent.transform.localPosition, .1f));
+
+        // Give location of target to the agent
+        agent.GetComponent<SeekerAgent>().Target = players[0];
     }
 
     public Vector3 RandomPosition(float y)
