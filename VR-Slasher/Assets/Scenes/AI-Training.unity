@@ -182,10 +182,6 @@ PrefabInstance:
       propertyPath: monitorTool
       value: 
       objectReference: {fileID: 1760197772}
-    - target: {fileID: 257686162471693480, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
-      propertyPath: m_BrainParameters.VectorObservationSize
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
 --- !u!1 &1026753312

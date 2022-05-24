@@ -29,19 +29,16 @@ public class Environment : MonoBehaviour
             players.Add(player);
             do
             {
-                player.transform.localPosition = RandomPosition(player.transform.localPosition.y);
+                player.transform.localPosition = RandomPosition(0.5f);
             } while (Physics.CheckSphere(player.transform.localPosition, .1f));
         }
 
         // Reset agent position
         do
         {
-            agent.transform.localPosition = RandomPosition(agent.transform.localPosition.y);
+            agent.transform.localPosition = RandomPosition(0.5f);
             agent.transform.localEulerAngles = RandomRotation();
         } while (Physics.CheckSphere(agent.transform.localPosition, .1f));
-
-        // Give location of target to the agent
-        agent.GetComponent<SeekerAgent>().Target = players[0];
     }
 
     public Vector3 RandomPosition(float y)

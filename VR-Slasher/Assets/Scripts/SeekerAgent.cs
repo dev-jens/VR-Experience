@@ -12,8 +12,6 @@ public class SeekerAgent : Agent
     private Rigidbody rb;
     private Environment env;
 
-    public GameObject Target { get; set; }
-
     [SerializeField] private float maxTime = 60f;
     private float timer = 0f;
 
@@ -28,7 +26,7 @@ public class SeekerAgent : Agent
     private void Update()
     {
         // If agent falls, give negative reward and end episode
-        if(transform.position.y < transform.parent.position.y - 3)
+        if(transform.localPosition.y < -3f)
         {
             SetReward(-1f);
             monitorTool.FailsCount += 1;
@@ -60,7 +58,6 @@ public class SeekerAgent : Agent
     {
         sensor.AddObservation(transform.position);
         sensor.AddObservation(transform.rotation);
-        sensor.AddObservation(Target.transform.position);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
