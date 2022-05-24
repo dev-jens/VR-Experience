@@ -6,6 +6,8 @@ public class Environment : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform agent;
 
+    [SerializeField] private int targets;
+
     private List<GameObject> players = new List<GameObject>();
 
     public void ResetEnvironment()
@@ -25,7 +27,7 @@ public class Environment : MonoBehaviour
         } while (Physics.CheckSphere(agent.transform.localPosition, .1f));
 
         // Reset player (Agent's target) position
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < targets; i++)
         {
             GameObject player = Instantiate(playerPrefab, transform.parent);
             player.transform.parent = transform;
