@@ -6,7 +6,7 @@ public class Environment : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform agent;
 
-    private List<Transform> players = new List<Transform>();
+    private List<GameObject> players = new List<GameObject>();
 
     public void ResetEnvironment()
     {
@@ -20,19 +20,20 @@ public class Environment : MonoBehaviour
         // Reset agent position
         do
         {
-            agent.transform.localPosition = RandomPosition(.5f);
+            agent.transform.localPosition = RandomPosition(agent.transform.localPosition.y);
             agent.transform.localEulerAngles = RandomRotation();
-        } while (Physics.CheckSphere(agent.transform.position, .1f));
+        } while (Physics.CheckSphere(agent.transform.localPosition, .1f));
 
         // Reset player (Agent's target) position
         for (int i = 0; i < 4; i++)
         {
-            Transform player = Instantiate(playerPrefab, transform.parent).transform;
+            GameObject player = Instantiate(playerPrefab, transform.parent);
+            player.transform.parent = transform;
             players.Add(player);
             do
             {
-                player.transform.position = RandomPosition(0.5f);
-            } while (Physics.CheckSphere(player.transform.position, .1f));
+                player.transform.localPosition = RandomPosition(player.transform.localPosition.y);
+            } while (Physics.CheckSphere(player.transform.localPosition, .1f));
         }
     }
 
