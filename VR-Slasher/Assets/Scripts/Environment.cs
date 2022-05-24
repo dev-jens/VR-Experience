@@ -6,6 +6,8 @@ public class Environment : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform agent;
 
+    [SerializeField] private GameObject ground;
+
     [SerializeField] private int targets;
 
     private List<GameObject> players = new List<GameObject>();
@@ -19,13 +21,6 @@ public class Environment : MonoBehaviour
         }
         players.Clear();
 
-        // Reset agent position
-        do
-        {
-            agent.transform.localPosition = RandomPosition(agent.transform.localPosition.y);
-            agent.transform.localEulerAngles = RandomRotation();
-        } while (Physics.CheckSphere(agent.transform.localPosition, .1f));
-
         // Reset player (Agent's target) position
         for (int i = 0; i < targets; i++)
         {
@@ -34,15 +29,25 @@ public class Environment : MonoBehaviour
             players.Add(player);
             do
             {
-                player.transform.localPosition = RandomPosition(player.transform.localPosition.y);
+                player.transform.localPosition = RandomPosition(0.5f);
             } while (Physics.CheckSphere(player.transform.localPosition, .1f));
         }
+
+        // Reset agent position
+        do
+        {
+            agent.transform.localPosition = RandomPosition(0.5f);
+            agent.transform.localEulerAngles = RandomRotation();
+        } while (Physics.CheckSphere(agent.transform.localPosition, .1f));
     }
 
     public Vector3 RandomPosition(float y)
     {
-        float x = Random.Range(-9.25f, 9.25f);
-        float z = Random.Range(-9.25f, 9.25f);
+        var maxX = (ground.transform.localScale.x / 2) - 0.75f;
+        var maxY = (ground.transform.localScale.y / 2) - 0.75f;
+
+        float x = Random.Range(-maxX, maxX);
+        float z = Random.Range(-maxY, maxY);
 
         return new Vector3(x, y, z);
     }

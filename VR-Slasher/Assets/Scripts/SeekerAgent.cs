@@ -26,7 +26,7 @@ public class SeekerAgent : Agent
     private void Update()
     {
         // If agent falls, give negative reward and end episode
-        if(transform.position.y < transform.parent.position.y - 3)
+        if(transform.localPosition.y < -3f)
         {
             SetReward(-1f);
             monitorTool.FailsCount += 1;
