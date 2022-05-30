@@ -12,6 +12,8 @@ public class SeekerAgent : Agent
     private Rigidbody rb;
     private Environment env;
 
+    private Vector3 targetPosition;
+
     [SerializeField] private float maxTime = 60f;
     private float timer = 0f;
 
@@ -58,6 +60,8 @@ public class SeekerAgent : Agent
     {
         sensor.AddObservation(transform.position);
         sensor.AddObservation(transform.rotation);
+        sensor.AddObservation(env.players[0].transform.position);
+        
     }
 
     public override void OnActionReceived(ActionBuffers actions)

@@ -8,7 +8,7 @@ public class Environment : MonoBehaviour
 
     [SerializeField] private int targets;
 
-    private List<GameObject> players = new List<GameObject>();
+    public List<GameObject> players = new List<GameObject>();
 
     public void ResetEnvironment()
     {
@@ -22,7 +22,7 @@ public class Environment : MonoBehaviour
         // Reset agent position
         do
         {
-            agent.transform.localPosition = RandomPosition(agent.transform.localPosition.y);
+            agent.transform.localPosition = RandomPosition(0.5f);
             agent.transform.localEulerAngles = RandomRotation();
         } while (Physics.CheckSphere(agent.transform.localPosition, .1f));
 
@@ -41,8 +41,8 @@ public class Environment : MonoBehaviour
 
     public Vector3 RandomPosition(float y)
     {
-        float x = Random.Range(-9.25f, 9.25f);
-        float z = Random.Range(-9.25f, 9.25f);
+        float x = Random.Range(-7.25f, 7.25f);
+        float z = Random.Range(-7.25f, 7.25f);
 
         return new Vector3(x, y, z);
     }
