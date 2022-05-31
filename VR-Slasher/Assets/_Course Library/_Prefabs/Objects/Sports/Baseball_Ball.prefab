@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6941339833226901756}
   - component: {fileID: 2616418728297103905}
   - component: {fileID: 2637859777399289953}
-  - component: {fileID: 8900448997593238822}
   m_Layer: 6
   m_Name: Baseball_Ball
   m_TagString: Ball
@@ -219,15 +218,3 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
---- !u!114 &8900448997593238822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564276163303955322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742e18e385449fd4987c7021878197d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
