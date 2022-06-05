@@ -195,6 +195,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 257686162471693475, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: MaxStep
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257686162471693475, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
       propertyPath: monitorTool
       value: 
       objectReference: {fileID: 1760197772}
@@ -215,6 +219,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 257686162471693480, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 257686162471693480, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
       propertyPath: m_BrainParameters.NumStackedVectorObservations
       value: 1
       objectReference: {fileID: 0}
@@ -224,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 257686162471693481, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
       propertyPath: m_MaxRayDegrees
-      value: 70
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 257686162471693481, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
       propertyPath: m_RaysPerDirection
-      value: 6
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 257686162471693481, guid: 275cdd9a0d319984ba9c2e0285b8e829, type: 3}
       propertyPath: m_SphereCastRadius

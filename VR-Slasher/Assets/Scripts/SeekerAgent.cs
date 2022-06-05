@@ -8,20 +8,16 @@ public class SeekerAgent : Agent
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float rotationSpeed = 350;
     [SerializeField] private MonitorTool monitorTool;
+    [SerializeField] private float maxTime = 60f;
 
     private Rigidbody rb;
     private Environment env;
-
-    private Vector3 targetPosition;
-
-    [SerializeField] private float maxTime = 60f;
     private float timer = 0f;
 
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
         env = GetComponentInParent<Environment>();
-
         timer = maxTime;
     }
 
@@ -58,9 +54,9 @@ public class SeekerAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.position);
-        sensor.AddObservation(transform.rotation);
-        sensor.AddObservation(env.players[0].transform.position);
+        sensor.AddObservation(transform.position); //3
+        sensor.AddObservation(transform.rotation); // 4
+        sensor.AddObservation(env.players[0].transform.position); //3
         
     }
 
@@ -71,7 +67,7 @@ public class SeekerAgent : Agent
         // Add negative reward when agent doesn't move
         if (vectorAction[0] == 0 & vectorAction[1] == 0)
         {
-            AddReward(-0.01f);
+            //AddReward(-0.1f);
             return;
         }
 
